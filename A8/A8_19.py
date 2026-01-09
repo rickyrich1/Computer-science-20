@@ -1,0 +1,5 @@
+Keys = input("Enter the keys: ").split()
+Values = input("Enter a values: ").split()
+w1 = list(map(int,Values))
+w2 = dict(zip(Keys , w1))
+print(w2)

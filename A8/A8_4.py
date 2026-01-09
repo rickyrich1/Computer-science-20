@@ -1,0 +1,5 @@
+T1 = input("Enter a username: ")
+T2 = input("Enter your age: ")
+T3 = input("Enter a password: ")
+T = (T1,int(T2),T3)
+print(T)

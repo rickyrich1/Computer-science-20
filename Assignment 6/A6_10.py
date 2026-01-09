@@ -1,0 +1,5 @@
+fn = input("your first name: ")
+ln = input("Your last name: ")
+print(fn)
+print(ln)
+print(f"My name is {fn} and my last name is {ln}.")

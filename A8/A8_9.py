@@ -1,0 +1,6 @@
+w1 =  input("").split( )
+w2 = list(map(int,w1))
+w3 = max(w2)
+w4 = w2.index(w3)
+print(maximum figure: w3)
+print(w4)

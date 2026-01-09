@@ -1,0 +1,10 @@
+r = input("enter your age: ")
+r1 = [(12, "Child"), (19, "Teen"), (59, "Adult")]
+if r <= 12:
+    print(child)
+elif r <= 19:
+    print(Teen)
+elif r <= 59:
+    print(Adult)
+else :
+    print(senior)
