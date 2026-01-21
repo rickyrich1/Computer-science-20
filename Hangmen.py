@@ -2,32 +2,32 @@ import ttkbootstrap as ttk
 import tkinter.messagebox as mbox
 import random
 
-words = ["Enoch", "computer", "joking", "Babatunde", "Exam"]
+words = ["educate", "computer", "joking", "table", "exam"]
 secret_word = random.choice(words)
-guessed_letters = []
+guessletters = []
 lives = 6
+str(map(list, guessletters))
+#guessletters.delete(0,"end")
 
 
 def update_display():
-    """Update the word and lives labels"""
     display = ""
     for letter in secret_word:
-        if letter in guessed_letters:
+        if letter in guessletters:
             display += letter + " "
         else:
             display += "_ "
     word_label.config(text=display)
     lives_label.config(text="Lives left: " + str(lives))
 
+
 def check_win():
-    """Return True if the player guessed the word"""
     for letter in secret_word:
-        if letter not in guessed_letters:
+        if letter not in guessletters:
             return False
     return True
 
-def guess_letter():
-    """Process a letter guess"""
+def guessletter2():
     global lives
 
     letter = entry.get().lower()
@@ -37,11 +37,11 @@ def guess_letter():
         mbox.showwarning("Invalid", "Buddy one letter at a time")
         return
 
-    if letter in guessed_letters:
+    if letter in guessletters:
         mbox.showinfo("Already Guessed", "Am pretty sure you guessed that already")
         return
 
-    guessed_letters.append(letter)
+    guessletters.append(letter)
 
     if letter not in secret_word:
         lives -= 1
@@ -54,31 +54,37 @@ def guess_letter():
         return
 
     if lives == 0:
-        mbox.showinfo("Game Over!", "The word was: " + secret_word)
+        mbox.showinfo("Error", "Sorry you lost,The word was: " + secret_word)
         guess_button.config(state="disabled")
+        lives_label.delete(0, "end")
+
         return
 
 
-window = ttk.Window()
+window = ttk.Window(themename="darkly")
 window.title("Who wants to be a millionaire")
+icon = ttk.PhotoImage(file="icon1.jfif")
+window.iconphoto(False, icon)
 window.geometry("400x300")
 
 frame = ttk.Frame(window)
 frame.pack(pady=10,padx=10,fill='x')
 
-title_label = ttk.Label(frame, text="Guess the word to win be the next milllionaire", font=("Arial", 18))
-title_label.pack(pady=10)
+title_label = ttk.Label(frame,
+                        text="MY SIMPLE HANGMAN"
+                        , font=("Serif", 18,"bold"))
+title_label.pack(padx=10,pady=10)
 
 word_label = ttk.Label(frame, text="", font=("Courier", 16))
-word_label.pack(pady=10)
+word_label.pack(padx=10,pady=10)
 
 lives_label = ttk.Label(frame, text="")
-lives_label.pack(pady=5)
+lives_label.pack(pady=10,padx=10,fill='x')
 
 entry = ttk.Entry(frame, width=10)
-entry.pack(pady=10)
+entry.pack(padx=10,pady=10,fill='x')
 
-guess_button = ttk.Button(frame, text="Guess", command=guess_letter)
+guess_button = ttk.Button(frame, text="Guess", command=guessletter2)
 guess_button.pack(padx=10,pady=10,fill='x')
 
 update_display()
